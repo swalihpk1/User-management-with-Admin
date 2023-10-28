@@ -1,0 +1,56 @@
+<%-include('../layouts/header')-%>
+
+<div class="container-fluid vh-100 bg-dark">
+    <button class="btn btn-info"><a style="text-decoration: none;color: aliceblue;"
+        href="/admin/logout">Logout</a></button>
+    <h1 class="text-center text-white">Admin home page</h1>
+
+    <h3 class="text-center text-primary"><%= admin.name %></h3> 
+    <div class="input-group">
+        
+      </div>
+
+        <h5 class="text-center m-4 text-success"><%= message %></h5>
+
+    <section>
+        <div class="container">
+    
+              <form action="">
+              <input type="search" id="form1" name="search" class="form-control bg-dark text-white w-25" placeholder="Search username, email or Mobile..."/>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <div class="row mt-3">
+                <a href="/admin/addUser" class="btn btn-success ml-auto">Add User</a>
+            </div>
+            <table class="table mt-4 text-white">
+      <thead class="text-white">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Mobile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%if(users.length != 0){%>
+            <% for(let i=0;i<users.length;i++){ %>
+                <tr>
+                    <td><%= users[i].name %></td>
+                    <td><%= users[i].email %></td>
+                    <td><%= users[i].phone %></td>
+                    <td><a href="/admin/editUser?id=<%=users[i]._id%>" class="fa-solid fa-pen mb-4" style="color: hwb(143 8% 0%);"></a><br><a href="/admin/deleteUser?id=<%=users[i]._id%>" class="fa-solid fa-trash" style="color:hsla(0, 100%, 50%, 0.657);" onclick="return confirm('ARE YOU WANT TO DELETE USER : <%=users[i].name%>')"></a></td>
+                </tr>
+             <%  } %>
+        <%  } %> 
+
+      </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+    <script src="https://kit.fontawesome.com/a6f4adbcd9.js" crossorigin="anonymous"></script>
+
+<%-include('../layouts/footer')-%>
